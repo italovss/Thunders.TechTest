@@ -1,31 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Thunders.TechTest.ApiService.Services.Interfaces;
 using Thunders.TechTest.Domain.Entities;
-using Thunders.TechTest.Domain.Interfaces;
+using Thunders.TechTest.OutOfBox.Queues;
 
 namespace Thunders.TechTest.ApiService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PedagioController(IUnitOfWork unitOfWork) : ControllerBase
+    public class PedagioController(IPedagioService pedagioService, IMessageSender messageSender) : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
-
-        [HttpGet]
-        public async Task<IEnumerable<PedagioUtilizacao>> GetAllAsync()
-        {
-            return await _unitOfWork.PedagioRepository.GetAllAsync();
-        }
+        private readonly IPedagioService _pedagioService = pedagioService;
+        private readonly IMessageSender _messageSender = messageSender;
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] PedagioUtilizacao pedagio)
+        public async Task<IActionResult> RegistrarUtilizacao([FromBody] PedagioUtilizacao request)
         {
-            await _unitOfWork.PedagioRepository.AddAsync(pedagio);
-            var sucesso = await _unitOfWork.CommitAsync() > 0;
+            if (request == null)
+                return BadRequest("Dados inválidos.");
 
-            if (!sucesso)
-                return BadRequest("Erro ao salvar pedagio.");
+            if (!_pedagioService.ValidarDados(request))
+                return BadRequest("Dados inconsistentes ou inválidos.");
 
-            return Ok(pedagio);
+            try
+            {
+                await _pedagioService.PersistirNoBancoAsync(request);
+                await _messageSender.Publish(request);
+                return Ok("Registro processado com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao processar a solicitação: {ex.Message}");
+            }
         }
     }
 }

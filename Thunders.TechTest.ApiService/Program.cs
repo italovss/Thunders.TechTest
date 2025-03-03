@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Thunders.TechTest.ApiService;
+using Thunders.TechTest.ApiService.Services;
+using Thunders.TechTest.ApiService.Services.Interfaces;
 using Thunders.TechTest.Domain.Interfaces;
 using Thunders.TechTest.Infra.Context;
 using Thunders.TechTest.Infra.Repositories;
@@ -39,6 +41,8 @@ if (features.UseEntityFramework)
     builder.Services.AddSqlServerDbContext<ApplicationDbContext>(builder.Configuration);
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     builder.Services.AddScoped<IPedagioRepository, PedagioRepository>();
+    builder.Services.AddScoped<IPedagioService, PedagioService>();
+    builder.Services.AddScoped<IMessageSender, RebusMessageSender>();
 }
 
 var app = builder.Build();
