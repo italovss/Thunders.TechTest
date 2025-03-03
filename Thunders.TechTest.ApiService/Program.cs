@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Thunders.TechTest.ApiService;
+using Thunders.TechTest.Infra.Context;
 using Thunders.TechTest.OutOfBox.Database;
 using Thunders.TechTest.OutOfBox.Queues;
 
@@ -20,11 +21,16 @@ if (features.UseMessageBroker)
 
 if (features.UseEntityFramework)
 {
-    builder.Services.AddSqlServerDbContext<DbContext>(builder.Configuration);
+    builder.Services.AddSqlServerDbContext<ApplicationDbContext>(builder.Configuration);
 }
 
-
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();

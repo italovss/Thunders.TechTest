@@ -7,10 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Thunders.TechTest.Infra\Thunders.TechTest.Infra.csproj" />
     <ProjectReference Include="..\Thunders.TechTest.OutOfBox\Thunders.TechTest.OutOfBox.csproj" />
     <ProjectReference Include="..\Thunders.TechTest.ServiceDefaults\Thunders.TechTest.ServiceDefaults.csproj" />
   </ItemGroup>
