@@ -3,8 +3,10 @@ using Microsoft.OpenApi.Models;
 using Thunders.TechTest.ApiService;
 using Thunders.TechTest.ApiService.Services;
 using Thunders.TechTest.ApiService.Services.Interfaces;
+using Thunders.TechTest.Domain.Entities;
 using Thunders.TechTest.Domain.Interfaces;
 using Thunders.TechTest.Infra.Context;
+using Thunders.TechTest.Infra.Persistence;
 using Thunders.TechTest.Infra.Repositories;
 using Thunders.TechTest.OutOfBox.Database;
 using Thunders.TechTest.OutOfBox.Queues;
@@ -33,15 +35,25 @@ builder.Services.AddProblemDetails();
 
 if (features.UseMessageBroker)
 {
-    builder.Services.AddBus(builder.Configuration, new SubscriptionBuilder());
+    builder.Services.AddBus(builder.Configuration, new SubscriptionBuilder()
+        .Add<RelatorioRelatorioFaturamentoPorHoraMessage>()
+        .Add<RelatorioTopPracasMessage>()
+        .Add<RelatorioVeiculosPorPracaMessage>());    
 }
 
 if (features.UseEntityFramework)
 {
     builder.Services.AddSqlServerDbContext<ApplicationDbContext>(builder.Configuration);
+
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
     builder.Services.AddScoped<IPedagioRepository, PedagioRepository>();
+    builder.Services.AddScoped<IRelatorioFaturamentoRepository, RelatorioFaturamentoRepository>();
+    builder.Services.AddScoped<IRelatorioTopPracasRepository, RelatorioTopPracasRepository>();
+    builder.Services.AddScoped<IRelatorioVeiculosPorPracaRepository, RelatorioVeiculosPorPracaRepository>();
+
     builder.Services.AddScoped<IPedagioService, PedagioService>();
+    builder.Services.AddScoped<IRelatorioService, RelatorioService>();
+
     builder.Services.AddScoped<IMessageSender, RebusMessageSender>();
 }
 
