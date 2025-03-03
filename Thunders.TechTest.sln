@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunders.TechTest.AppHost", "Thunders.TechTest.AppHost\Thunders.TechTest.AppHost.csproj", "{71BFF57B-2308-46B7-9017-1A0B0611FC28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunders.TechTest.AppHost", "Thunders.TechTest.AppHost\Thunders.TechTest.AppHost.csproj", "{71BFF57B-2308-46B7-9017-1A0B0611FC28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunders.TechTest.ServiceDefaults", "Thunders.TechTest.ServiceDefaults\Thunders.TechTest.ServiceDefaults.csproj", "{861E03EE-D70B-485A-8A0F-16C43653F169}"
 EndProject
@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunders.TechTest.ApiServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunders.TechTest.Tests", "Thunders.TechTest.Tests\Thunders.TechTest.Tests.csproj", "{B1D794BC-45AC-4515-825E-315D0AC7581C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunders.TechTest.OutOfBox", "Thunders.TechTest.OutOfBox\Thunders.TechTest.OutOfBox.csproj", "{58A2936F-4A18-4E2F-8F0D-D62DF2A0932F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thunders.TechTest.OutOfBox", "Thunders.TechTest.OutOfBox\Thunders.TechTest.OutOfBox.csproj", "{58A2936F-4A18-4E2F-8F0D-D62DF2A0932F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunders.TechTest.Domain", "Thunders.TechTest.Domain\Thunders.TechTest.Domain.csproj", "{B2A8B053-8D21-43EE-A5BB-23EEBBE2E71A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thunders.TechTest.Infra", "Thunders.TechTest.Infra\Thunders.TechTest.Infra.csproj", "{791997C6-3DDA-4EE4-9024-35A5278B2E83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{58A2936F-4A18-4E2F-8F0D-D62DF2A0932F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A2936F-4A18-4E2F-8F0D-D62DF2A0932F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A2936F-4A18-4E2F-8F0D-D62DF2A0932F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A8B053-8D21-43EE-A5BB-23EEBBE2E71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A8B053-8D21-43EE-A5BB-23EEBBE2E71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A8B053-8D21-43EE-A5BB-23EEBBE2E71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A8B053-8D21-43EE-A5BB-23EEBBE2E71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791997C6-3DDA-4EE4-9024-35A5278B2E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791997C6-3DDA-4EE4-9024-35A5278B2E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791997C6-3DDA-4EE4-9024-35A5278B2E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791997C6-3DDA-4EE4-9024-35A5278B2E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
