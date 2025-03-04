@@ -20,7 +20,11 @@ namespace Thunders.TechTest.ApiService.Services
                     Hora = g.Key.Hour,
                     TotalFaturado = g.Sum(x => x.ValorPago)
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (resultado.Count == 0)
+                return;
 
             var relatorio = new RelatorioFaturamento
             {
@@ -46,7 +50,11 @@ namespace Thunders.TechTest.ApiService.Services
                 })
                 .OrderByDescending(r => r.TotalFaturado)
                 .Take(quantidade)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (resultado.Count == 0)
+                return;
 
             var relatorio = new RelatorioTopPracas
             {
@@ -69,7 +77,11 @@ namespace Thunders.TechTest.ApiService.Services
                     Praca = g.Key,
                     QuantidadeVeiculos = g.Count()
                 })
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            if (resultado.Count == 0)
+                return;
 
             var relatorio = new RelatorioVeiculosPorPraca
             {
